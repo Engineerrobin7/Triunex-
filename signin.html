@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-container">
+            <h2>Sign In</h2>
+            <p class="subtitle">Please login to continue to your account</p>
+            <form id="signin-form">
+                <input type="email" id="signin-email" placeholder="Email" required>
+
+                <div class="password-container">
+                    <input type="password" id="signin-password" placeholder="Password" required>
+                    <span class="toggle-password" onclick="togglePassword('signin-password')">&#128065;</span>
+                </div>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Keep me logged in</label>
+                </div>
+
+                <button type="submit">Sign In</button>
+            </form>
+            
+            <div class="or-divider">OR</div>
+
+            <!-- ✅ Google Sign-In Button -->
+            <div id="g_id_onload"
+                data-client_id="674925433851-6gi3e2d5vb0kvb4s42vjskm26p98jcu5.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="handleGoogleAuth"
+                data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin" data-type="standard"></div>
+
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </div>
+        <div class="auth-bg"></div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+/* ✅ General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ✅ Main Wrapper */
+.auth-wrapper {
+    display: flex;
+    width: 850px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Left Side - Form */
+.auth-container {
+    flex: 1;
+    padding: 1.5rem;  /* Reduced padding for better spacing */
+    text-align: center;
+}
+
+/* ✅ Right Side - Background Image */
+.auth-bg {
+    flex: 1;
+    background: url('/assets/bg .jpg') no-repeat center center/cover;
+    border-radius: 0 10px 10px 0;
+}
+
+/* ✅ Subtitle Under Title */
+.subtitle {
+    color: gray;
+    font-size: 14px;
+    margin-top: -10px; /* ✅ Reduced space */
+    margin-bottom: 15px;
+}
+
+/* ✅ Input Fields */
+input {
+    margin: 8px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* ✅ Password Field with Eye Icon */
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+/* ✅ Buttons */
+button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* ✅ Google Sign-In Button */
+.google-btn {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.google-btn img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+/* ✅ Keep Me Logged In (Checkbox Alignment) */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* ✅ Fixed alignment */
+}
+
+/* ✅ Center the "OR" Text */
+.or-divider {
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+}

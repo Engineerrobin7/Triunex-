@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-container">
+            <h2>Sign Up</h2>
+            <p class="subtitle">Sign up to enjoy the features of Revolution</p>
+            <form id="signup-form">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <span class="toggle-password" onclick="togglePassword('password')">&#128065;</span>
+                </div>
+
+                <button type="submit">Sign Up</button>
+            </form>
+            
+            <div class="or-divider">OR</div>
+
+            <!-- ✅ Google Sign-Up Button -->
+            <div id="g_id_onload"
+                data-client_id="674925433851-6gi3e2d5vb0kvb4s42vjskm26p98jcu5.apps.googleusercontent.com"
+                data-context="signup"
+                data-ux_mode="popup"
+                data-callback="handleGoogleAuth"
+                data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin" data-type="standard"></div>
+
+            <p>Already have an account? <a href="signin.html">Sign In</a></p>
+        </div>
+        <div class="auth-bg"></div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
