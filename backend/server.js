@@ -1,6 +1,6 @@
-// ✅ Load environment variables
-require("dotenv").config();
-console.log("DB_PASSWORD:", process.env.DB_PASSWORD ? "Loaded ✅" : "Not Loaded ❌");
+require("dotenv").config();  // ✅ Ensure dotenv is loaded first
+console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID); // Debugging
+
 
 // ✅ Import dependencies
 const express = require("express");

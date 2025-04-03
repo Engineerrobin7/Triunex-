@@ -1,112 +1,186 @@
-/* ✅ General Styles */
+/* 🌍 Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* 🏠 Page Background */
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    background-color: #f5f5f5;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-/* ✅ Main Wrapper */
-.auth-wrapper {
+/* 📦 Container: Form + Background */
+.container {
     display: flex;
-    width: 850px;
     background: white;
-    border-radius: 10px;
-    overflow: hidden;
+    border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 850px;
+    max-width: 90%;
+    min-height: 500px;
 }
 
-/* ✅ Left Side - Form */
-.auth-container {
+/* 📝 Left Side: Form Box */
+.form-box {
     flex: 1;
-    padding: 1.5rem;  /* Reduced padding for better spacing */
+    padding: 40px;
     text-align: center;
 }
 
-/* ✅ Right Side - Background Image */
-.auth-bg {
-    flex: 1;
-    background: url('/assets/bg .jpg') no-repeat center center/cover;
-    border-radius: 0 10px 10px 0;
+/* 🎯 Title & Subtitle */
+h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
 }
 
-/* ✅ Subtitle Under Title */
 .subtitle {
-    color: gray;
     font-size: 14px;
-    margin-top: -10px; /* ✅ Reduced space */
-    margin-bottom: 15px;
+    color: gray;
+    margin-bottom: 20px;
 }
 
-/* ✅ Input Fields */
+/* ✏️ Input Fields */
 input {
-    margin: 8px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
-/* ✅ Password Field with Eye Icon */
+/* 👁️ Password Eye Icon */
 .password-container {
     position: relative;
 }
 
-.toggle-password {
+.password-toggle {
     position: absolute;
-    right: 10px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
 }
 
-/* ✅ Buttons */
+/* ✅ Keep Me Logged In */
+.keep-logged-in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.keep-logged-in input {
+    margin-right: 8px;
+}
+
+/* 🔘 Buttons */
 button {
-    padding: 10px;
-    background-color: #007BFF;
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
     color: white;
     border: none;
+    border-radius: 6px;
+    font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-    width: 100%;
+    transition: all 0.3s ease-in-out;
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
-/* ✅ Google Sign-In Button */
+/* 🔄 OR Divider */
+.or-divider {
+    margin: 20px 0;
+    font-weight: bold;
+    color: gray;
+}
+
+/* 🔵 Google Sign-In Button */
 .google-btn {
-    background-color: white;
-    color: black;
-    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.google-btn button {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    gap: 8px;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.google-btn button:hover {
+    background-color: #f1f1f1;
+}
+
+/* 🔢 OTP Inputs */
+.otp-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.otp-input {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* 🔄 Resend OTP Link */
+.resend {
     margin-top: 10px;
+    font-size: 14px;
+}
+
+.resend a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.resend a:hover {
+    text-decoration: underline;
+}
+
+/* 📩 Email Confirm Page */
+.email-confirm-buttons {
+    margin-top: 20px;
+}
+
+/* 📩 Email Confirm & Resend Button */
+.confirm-email-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
     cursor: pointer;
 }
 
-.google-btn img {
-    width: 20px;
-    margin-right: 10px;
+.confirm-email-btn:hover {
+    background-color: #0056b3;
 }
 
-/* ✅ Keep Me Logged In (Checkbox Alignment) */
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px; /* ✅ Fixed alignment */
-}
-
-/* ✅ Center the "OR" Text */
-.or-divider {
-    text-align: center;
-    margin: 10px 0;
-    font-weight: bold;
+/* 🖼️ Right Side: Background Image */
+.bg-container {
+    flex: 1;
+    background: url('../assets/bg .jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 0 12px 12px 0;
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmed</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Side: Email Confirmation Box -->
+        <div class="form-box">
+            <h2>Email Verified!</h2>
+            <p class="subtitle">Your email has been successfully verified.</p>
+            
+            <div class="email-confirm-buttons">
+                <button class="confirm-email-btn" onclick="redirectToSignIn()">Go to Sign In</button>
+            </div>
+        </div>
+
+        <!-- Right Side: Background Image -->
+        <div class="bg-container"></div>
+    </div>
+
+    <script>
+        function redirectToSignIn() {
+            window.location.href = "signin.html";
+        }
+    </script>
+</body>
+</html>

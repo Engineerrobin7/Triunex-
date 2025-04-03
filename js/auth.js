@@ -1,91 +1,176 @@
-const API_URL = "http://localhost:5000/auth"; // ✅ Backend API URL
+document.addEventListener("DOMContentLoaded", function () {
+    // 📝 Select Form Elements
+    const signupForm = document.getElementById("signup-form");
+    const signinForm = document.getElementById("signin-form");
+    const resetPasswordButton = document.getElementById("resetPassword");
+    const otpForm = document.getElementById("otp-form");
+    const mobileVerificationForm = document.getElementById("mobileVerificationForm");
 
-// ✅ Sign-Up Function
-document.getElementById("signup-form")?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    if (!name || !email || !password) {
-        alert("❌ Please fill in all fields.");
-        return;
+    // 🔐 Password Visibility Toggle
+    function togglePassword(inputId) {
+        const passwordInput = document.getElementById(inputId);
+        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
     }
+    window.togglePassword = togglePassword; // Make it globally accessible
 
-    try {
-        const response = await fetch(`${API_URL}/signup`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email, password }),
+    // 🟢 Handle Sign Up Form Submission
+    if (signupForm) {
+        signupForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                const response = await fetch("http://localhost:5000/auth/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, password }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert("✅ Sign Up Successful! Please verify your email.");
+                    window.location.href = "email-confirmation.html"; // Redirect to email verification page
+                } else {
+                    alert(`❌ Error: ${data.message}`);
+                }
+            } catch (error) {
+                alert("❌ Server Error. Please try again.");
+            }
         });
-
-        const data = await response.json();
-
-        if (!response.ok) throw new Error(data.message || "Signup failed");
-
-        alert("🎉 Registration Successful!");
-        window.location.href = "signin.html"; // Redirect to sign-in page
-    } catch (error) {
-        console.error("❌ Server Error:", error);
-        alert("❌ " + error.message);
-    }
-});
-
-// ✅ Sign-In Function
-document.getElementById("signin-form")?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById("signin-email").value;
-    const password = document.getElementById("signin-password").value;
-
-    if (!email || !password) {
-        alert("❌ Please fill in all fields.");
-        return;
     }
 
-    try {
-        const response = await fetch(`${API_URL}/signin`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
+    // 🔵 Handle Sign In Form Submission
+    if (signinForm) {
+        signinForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                const response = await fetch("http://localhost:5000/auth/signin", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    localStorage.setItem("token", data.token);
+                    alert("✅ Login Successful!");
+                    window.location.href = "dashboard.html";
+                } else {
+                    alert(`❌ Error: ${data.message}`);
+                }
+            } catch (error) {
+                alert("❌ Server Error. Please try again.");
+            }
         });
-
-        const data = await response.json();
-
-        if (!response.ok) throw new Error(data.message || "Login failed");
-
-        localStorage.setItem("token", data.token);
-        alert("🎉 Login Successful!");
-        window.location.href = "dashboard.html"; // Redirect to dashboard
-    } catch (error) {
-        console.error("❌ Server Error:", error);
-        alert("❌ " + error.message);
     }
-});
 
-// ✅ Google Sign-In Function
-function handleGoogleAuth(response) {
-    const jwtToken = response.credential;
+    // 🔄 Handle Password Reset
+    if (resetPasswordButton) {
+        resetPasswordButton.addEventListener("click", async () => {
+            const email = document.getElementById("email").value;
 
-    if (jwtToken) {
-        localStorage.setItem("token", jwtToken);
-        alert("🎉 Google Sign-In Successful!");
-        window.location.href = "dashboard.html"; // Redirect to dashboard
-    } else {
-        alert("❌ Google Sign-In Failed. Please try again.");
+            try {
+                const response = await fetch("http://localhost:5000/auth/reset-password", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert("✅ Password reset link sent to your email!");
+                } else {
+                    alert(`❌ Error: ${data.message}`);
+                }
+            } catch (error) {
+                alert("❌ Server Error. Please try again.");
+            }
+        });
     }
-}
 
-// ✅ Password Toggle Function
-function togglePassword(inputId) {
-    const passwordField = document.getElementById(inputId);
-    passwordField.type = passwordField.type === "password" ? "text" : "password";
-}
+    // 🔢 Handle OTP Verification
+    if (otpForm) {
+        otpForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const otp = Array.from(document.querySelectorAll(".otp-input")).map(input => input.value).join("");
 
-// ✅ Logout Function
-document.getElementById("logout-btn")?.addEventListener("click", () => {
-    localStorage.removeItem("token");
-    alert("✅ Logged out successfully!");
-    window.location.href = "signin.html";
+            try {
+                const response = await fetch("http://localhost:5000/auth/verify-otp", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ otp }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert("✅ OTP Verified Successfully!");
+                    window.location.href = "dashboard.html";
+                } else {
+                    alert(`❌ Error: ${data.message}`);
+                }
+            } catch (error) {
+                alert("❌ Server Error. Please try again.");
+            }
+        });
+    }
+
+    // 📲 Handle Mobile Number Verification
+    if (mobileVerificationForm) {
+        mobileVerificationForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const mobileNumber = document.getElementById("mobileNumber").value;
+
+            try {
+                const response = await fetch("http://localhost:5000/auth/send-otp-mobile", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ mobileNumber }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert("✅ OTP Sent to Mobile Number!");
+                    window.location.href = "otp-verification.html"; // Redirect to OTP verification page
+                } else {
+                    alert(`❌ Error: ${data.message}`);
+                }
+            } catch (error) {
+                alert("❌ Server Error. Please try again.");
+            }
+        });
+    }
+
+    // 🔵 Google Authentication
+    window.handleGoogleAuth = async (response) => {
+        try {
+            const googleResponse = await fetch("http://localhost:5000/auth/google", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ credential: response.credential }),
+            });
+
+            const data = await googleResponse.json();
+            if (googleResponse.ok) {
+                localStorage.setItem("token", data.token);
+                alert("✅ Google Login Successful!");
+                window.location.href = "dashboard.html";
+            } else {
+                alert(`❌ Error: ${data.message}`);
+            }
+        } catch (error) {
+            alert("❌ Server Error. Please try again.");
+        }
+    };
+
+    // 🚪 Logout Function
+    window.logout = () => {
+        localStorage.removeItem("token");
+        alert("✅ Logged Out Successfully!");
+        window.location.href = "signin.html";
+    };
 });

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Side: OTP Verification Box -->
+        <div class="form-box">
+            <h2>Verify Your Email</h2>
+            <p class="subtitle">Enter the 6-digit OTP sent to your email.</p>
+
+            <div class="otp-container">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+            </div>
+
+            <button class="verify-btn" onclick="verifyOTP()">Verify OTP</button>
+            <p class="resend">Didn’t receive a code? <a href="resend-otp.html">Resend</a></p>
+        </div>
+
+        <!-- Right Side: Background Image -->
+        <div class="bg-container"></div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

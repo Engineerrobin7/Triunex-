@@ -8,17 +8,19 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-    <div class="auth-wrapper">
-        <div class="auth-container">
+    <div class="container">
+        <!-- Left Side: Sign-Up Form -->
+        <div class="form-box">
             <h2>Sign Up</h2>
             <p class="subtitle">Sign up to enjoy the features of Revolution</p>
+
             <form id="signup-form">
                 <input type="text" id="name" placeholder="Full Name" required>
                 <input type="email" id="email" placeholder="Email" required>
 
                 <div class="password-container">
                     <input type="password" id="password" placeholder="Password" required>
-                    <span class="toggle-password" onclick="togglePassword('password')">&#128065;</span>
+                    <span class="password-toggle" onclick="togglePassword('password')">&#128065;</span>
                 </div>
 
                 <button type="submit">Sign Up</button>
@@ -38,7 +40,9 @@
 
             <p>Already have an account? <a href="signin.html">Sign In</a></p>
         </div>
-        <div class="auth-bg"></div>
+
+        <!-- ✅ Right Side: Background Image -->
+        <div class="bg-container"></div>
     </div>
 
     <script src="js/auth.js"></script>

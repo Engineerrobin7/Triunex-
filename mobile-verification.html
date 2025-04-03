@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Verification</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/auth.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Side: Mobile Verification Form -->
+        <div class="form-box">
+            <h2>Mobile Verification</h2>
+            <p class="subtitle">Enter your mobile number to receive an OTP.</p>
+
+            <form id="mobileVerificationForm">
+                <input type="text" id="mobileNumber" placeholder="Enter Mobile Number" required>
+                <button type="submit">Send OTP</button>
+            </form>
+
+            <p class="resend">Didn't receive a code? <a href="resend-otp.html">Resend OTP</a></p>
+        </div>
+
+        <!-- Right Side: Background Image -->
+        <div class="bg-container"></div>
+    </div>
+</body>
+</html>
